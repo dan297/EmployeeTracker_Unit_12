@@ -90,96 +90,94 @@ const newDepartment = () => {
         {
           type: "input",
           name: "departmentName",
-          message: "Title of new department?",
+          message: "New department name?",
         },
       ])
       .then((data) => {
-        connection.query("INSERT INTO DEPARTMENT? ", {
-          name: data.departmentName,
-        });
+        connection.query(
+          "INSERT INTO DEPARTMENT SET ? ",
+          {
+            name: data.departmentName,
+          },
+          console.table("Success")
+        );
         start();
       });
   });
 };
 
 const newRole = () => {
-  connection.query('SELECT * FROM role', () => {
+  connection.query("SELECT * FROM role", () => {
     inquirer
       .prompt([
         {
           type: "input",
           name: "job",
-          message: "Title of new job?"
+          message: "Title of new job?",
         },
         {
           type: "input",
           name: "salary",
-          message: "New job salary?"
+          message: "New job salary?",
         },
         {
           type: "input",
           name: "department",
-          message: "The department ID?"
-        }
+          message: "The department ID?",
+        },
       ])
       .then((data) => {
-        connection.query(`INSERT INTO ROLE SET ? `,
+        connection.query(
+          `INSERT INTO ROLE SET ? `,
           {
             title: data.job,
             salary: data.salary,
-            department_id: data.department
+            department_id: data.department,
           },
-            console.table('Successfully added your role!')
-        )
-        start()
-      }) 
-    }
-    )
-    
-}
-
+          console.table("Successfully added your role!")
+        );
+        start();
+      });
+  });
+};
 
 const newEmployee = () => {
-  connection.query('SELECT * FROM employee', () => {
+  connection.query("SELECT * FROM employee", () => {
     inquirer
       .prompt([
         {
           type: "input",
           name: "firstName",
-          message: "Enter First Name"
+          message: "Enter First Name",
         },
         {
           type: "input",
           name: "lastName",
-          message: "Enter Last Name"
+          message: "Enter Last Name",
         },
         {
           type: "input",
           name: "roleid",
-          message: "Enter Id"
+          message: "Enter Id",
         },
         {
           type: "input",
           name: "managerid",
-          message: "Employee Manager Id"
-        }
-
+          message: "Employee Manager Id",
+        },
       ])
       .then((data) => {
-        connection.query('INSERT INTO EMPLOYEE SET ? ',
+        connection.query(
+          "INSERT INTO EMPLOYEE SET ? ",
           {
             first_name: data.firstName,
             last_name: data.lastName,
             role_id: data.roleid,
-            manager_id: data.managerid
-
-
+            manager_id: data.managerid,
           },
-            console.table('Successfully added your new employee!')
-        )
-        start()
-      })
-  }
-  )
-
-}
+          console.table("Successfully added your new employee!")
+        );
+        start();
+      });
+  });
+};
