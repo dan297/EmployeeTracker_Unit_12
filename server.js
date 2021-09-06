@@ -43,11 +43,8 @@ const start = () => {
         case "View roles ":
           viewAllRoles();
           break;
-        case "Update role":
-          updateRole();
-          break;
         case "Add employee":
-          addEmployees();
+          newEmployee();
           break;
         case "Add department":
           newDepartment();
@@ -139,4 +136,50 @@ const newRole = () => {
     }
     )
     
+}
+
+
+const newEmployee = () => {
+  connection.query('SELECT * FROM employee', () => {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "firstName",
+          message: "Enter First Name"
+        },
+        {
+          type: "input",
+          name: "lastName",
+          message: "Enter Last Name"
+        },
+        {
+          type: "input",
+          name: "roleid",
+          message: "Enter Id"
+        },
+        {
+          type: "input",
+          name: "managerid",
+          message: "Employee Manager Id"
+        }
+
+      ])
+      .then((data) => {
+        connection.query('INSERT INTO EMPLOYEE SET ? ',
+          {
+            first_name: data.firstName,
+            last_name: data.lastName,
+            role_id: data.roleid,
+            manager_id: data.managerid
+
+
+          },
+            console.table('Successfully added your new employee!')
+        )
+        start()
+      })
+  }
+  )
+
 }
