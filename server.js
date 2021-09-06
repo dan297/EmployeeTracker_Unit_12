@@ -53,7 +53,7 @@ const start = () => {
           newDepartment();
           break;
         case "Add role":
-          addRole();
+          newRole();
           break;
         case "Exit":
           exit();
@@ -105,41 +105,38 @@ const newDepartment = () => {
   });
 };
 
-// const newRole = () => {
-//   connection.query('SELECT * FROM role', () => {
-//     inquirer
-//       .prompt([
-//         {
-//           type: "input",
-//           name: "Role",
-//           message: "What is the job title?"
-//         },
-//         {
-//           type: "input",
-//           name: "Salary",
-//           message: "Job Salary?"
-//         },
-//         {
-//           type: "input",
-//           name: "Department",
-//           message: "Department ID?"
-//         }
-//       ])
-//       .then((data) => {
-//         connection.query('INSERT INTO ROLE?',
-//           {
-//             title: data.Role,
-//             salary: data.Salary,
-//             department_id: data.Department
-
-//           },
-//           () => {
-//             console.table('Successfully added your new employee!')
-//           }
-//         )
-//         start()
-//       })
-//   }
-//   )
-
-// }
+const newRole = () => {
+  connection.query('SELECT * FROM role', () => {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "job",
+          message: "Title of new job?"
+        },
+        {
+          type: "input",
+          name: "salary",
+          message: "New job salary?"
+        },
+        {
+          type: "input",
+          name: "department",
+          message: "The department ID?"
+        }
+      ])
+      .then((data) => {
+        connection.query(`INSERT INTO ROLE SET ? `,
+          {
+            title: data.job,
+            salary: data.salary,
+            department_id: data.department
+          },
+            console.table('Successfully added your role!')
+        )
+        start()
+      }) 
+    }
+    )
+    
+}
